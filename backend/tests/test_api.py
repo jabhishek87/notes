@@ -1,11 +1,10 @@
+import json
 import os
 import unittest
-import json
-
-from faker import Faker
 
 import main
 from api.db import init_db
+from faker import Faker
 
 os.environ['DB_NAME'] = 'test.db'
 init_db()
@@ -18,7 +17,6 @@ RECORDS = [(fake.name(), fake.text()) for i in range(NUM_REC)]
 
 
 class TestFlaskApi(unittest.TestCase):
-
     def setUp(self):
         self.app = main.app.test_client()
         self.app.testing = True
@@ -27,9 +25,7 @@ class TestFlaskApi(unittest.TestCase):
     def create_test_data(self):
         for rec in RECORDS:
             payload = {"name": rec[0], "data": rec[1]}
-            response = self.app.post(
-                BASE_URL, data=json.dumps(payload)
-            )
+            response = self.app.post(BASE_URL, data=json.dumps(payload))
             self.assertEqual(response.status_code, 201)
 
     def test_get_all(self):

@@ -1,2 +1,4 @@
 yapf
 Faker
+pytest
+pytest-cov

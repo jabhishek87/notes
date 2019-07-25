@@ -1,12 +1,12 @@
-from flask import request
-from flask_restful import Resource, abort
 import json
 
+from db import engine
+from db import Notes
+from flask import request
+from flask_restful import abort
+from flask_restful import Resource
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
-
-from db import engine, Notes
-
 
 session_factory = sessionmaker(bind=engine)
 session = scoped_session(session_factory)
@@ -15,7 +15,6 @@ session = scoped_session(session_factory)
 # Note
 # shows a single Note item and lets you delete a Note item
 class Note(Resource):
-
     def find_by_uuid(self, uuid):
         note = session.query(Notes).filter(Notes.uuid == uuid).first()
         if note is None:
