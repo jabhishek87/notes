@@ -1,13 +1,8 @@
-import os
-
 import sqlalchemy as db
 from sqlalchemy.ext.declarative import declarative_base
 
 import uuid
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
-# SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+from settings import SQLALCHEMY_DATABASE_URI
 
 engine = db.create_engine(SQLALCHEMY_DATABASE_URI)
 Base = declarative_base()
@@ -32,5 +27,9 @@ class Notes(Base):
         }
 
 
-if __name__ == '__main__':
+def init_db():
     Base.metadata.create_all(engine)
+
+
+if __name__ == '__main__':
+    init_db()
