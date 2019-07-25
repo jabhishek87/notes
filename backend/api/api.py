@@ -1,12 +1,13 @@
 import json
 
-from db import engine
-from db import Notes
 from flask import request
 from flask_restful import abort
 from flask_restful import Resource
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
+
+from .db import engine
+from .db import Notes
 
 session_factory = sessionmaker(bind=engine)
 session = scoped_session(session_factory)

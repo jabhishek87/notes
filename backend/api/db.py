@@ -1,8 +1,9 @@
+import uuid
+
 import sqlalchemy as db
 from sqlalchemy.ext.declarative import declarative_base
 
-import uuid
-from settings import SQLALCHEMY_DATABASE_URI
+from .settings import SQLALCHEMY_DATABASE_URI
 
 engine = db.create_engine(SQLALCHEMY_DATABASE_URI)
 Base = declarative_base()

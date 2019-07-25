@@ -2,3 +2,4 @@ yapf
 Faker
 pytest
 pytest-cov
+pytest-runner
