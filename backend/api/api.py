@@ -17,8 +17,7 @@ session = scoped_session(session_factory)
 # shows a single Note item and lets you delete a Note item
 class Note(Resource):
     def find_by_uuid(self, uuid):
-        note = session.query(Notes).filter(Notes.uuid == uuid).first()
-        if note is None:
+        if (note := session.query(Notes).filter(Notes.uuid == uuid).first()) is None:
             abort(404, message="Note {} doesn't exist".format(uuid))
         return note
 
